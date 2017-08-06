@@ -15,10 +15,10 @@
 typedef struct thread_data_s {
   int tid;         /**< thread's ID */
   int nthreads;    /**< number of threads */
-  int n;					 /**< size of the data */
-  double *matrix;	 /**< an n-by-n matrix */
-  double *x;			 /**< an n-by-1 vector */
-  double *y;			 /**< an n-by-1 vector */
+  int n;           /**< size of the data */
+  double *matrix;  /**< an n-by-n matrix */
+  double *x;       /**< an n-by-1 vector */
+  double *y;       /**< an n-by-1 vector */
   double *scalar1; /**< a general-purpose scalar */
   double *scalar2; /**< a general-purpose scalar */
 } thread_data_t;
