@@ -3,7 +3,7 @@
  *
  * @author Erik Vesterlund
  *
- * @brief File for femonstrating Doxygen documentation.
+ * @brief File for demonstrating Doxygen documentation.
  * This line will belong to the brief.
  *
  * This part of the description is separated from the brief section
