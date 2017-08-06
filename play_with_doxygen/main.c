@@ -32,8 +32,8 @@
 
 // Single-line comments don't seem to be picked up either - good
 
-#include <stdio.h> /* comments here should not be double-starred */
-#include <stdlib.h>
+#include <stdio.h>  /* comments here should not be double-starred */
+#include <stdlib.h> /* they'll end up in the wrong place */
 #include <pthread.h>
 
 /**
@@ -71,9 +71,10 @@ struct mystruct_s {
  * @param arg A void pointer
  * @return void pointer
  */
-void *work(void *arg) {
-  while(1)
-    ;
+void *work(void *arg)
+{
+	while(1)
+		;
 }
 
 /**
@@ -107,15 +108,15 @@ int foo(int x)
  */
 int main(int argc, char** argv) {
 	/* Use single-starred comments to make internal "invisible" comments. */
-  int nthreads = 4;
-  if (argc==2) {
-    if (atoi(argv[1])>1)
-      nthreads = atoi(argv[1]);
-  }
+	int nthreads = 4;
+	if (argc==2) {
+		if (atoi(argv[1])>1)
+			nthreads = atoi(argv[1]);
+	}
 
 	/** Double-starred comments will be picked up, of course. */
-  pthread_t threads[nthreads];
-  int i;
+	pthread_t threads[nthreads];
+	int i;
 
 	/**
 	 * \defgroup super_duper_group
@@ -128,12 +129,12 @@ int main(int argc, char** argv) {
 	 *
    * @{
 	 */
-  for (i=0; i<nthreads; i++)
-    pthread_create(&threads[i], NULL, work, NULL);
+	for (i=0; i<nthreads; i++)
+		pthread_create(&threads[i], NULL, work, NULL);
 	/** @} */ /* this final AT closes the group */
 
-  for (i=0; i<nthreads; i++)
-    pthread_join(threads[i], NULL);
+	for (i=0; i<nthreads; i++)
+		pthread_join(threads[i], NULL);
 
-  return 0;
+	return 0;
 }
