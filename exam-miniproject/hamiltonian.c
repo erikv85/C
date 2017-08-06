@@ -1,3 +1,13 @@
+/**
+ * @file hamiltonian.c
+ *
+ * @author unknown, possibly Elias Rudberg, a researcher at Uppsala
+ * University, 2017 or earlier. This prelude, descriptions and other
+ * comments were added by Erik Vesterlund.
+ *
+ * @brief ...
+ */
+
 #include "hamiltonian.h"
 
 double get_potential_value(double x, double mass, double omega) {
