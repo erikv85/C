@@ -1,6 +1,15 @@
 /**
- * Program for demonstrating various features of the C
+ * @file demo.c
+ *
+ * @author Erik Vesterlund
+ *
+ * @brief Program for demonstrating various features of the C
  * programming language.
+ *
+ * Currently this program demonstrates the const and static keywords,
+ * more to come when I feel the need to. This program will, by
+ * design, not compile - comments show which parts need to be
+ * modified to be able to compile.
  */
 
 #include <stdio.h>
@@ -8,10 +17,10 @@
 #include "demo_utils.h"
 
 /**
- * Demonstrates the const keyword. Designed to not compile
- * as is; trying to change a const variable will make it
- * impossible to compile the program, and that is the point
- * of this function.
+ * @brief Demonstrates the const keyword.
+ *
+ * The const keyword can be used to declare variables or pointers to
+ * be constant. Several examples are shown below.
  */
 void const_demo() {
 	int x = 5;
@@ -20,10 +29,9 @@ void const_demo() {
 	const int w = 13;
 
 	/**
-	 * First example, pointer to const. We first declare a
-	 * pointer to a const int and then show that the pointer
-	 * can be reassigned, but can not be used to change the
-	 * value (via dereferencing).
+	 * First example, pointer to const. We first declare a pointer to a
+	 * const int and then show that the pointer can be reassigned, but
+	 * can not be used to change the value (via dereferencing).
 	 */
 	const int *a = &z; /* initial declaration */
 	a = &w;						 /* changing the pointer is fine */
@@ -31,10 +39,9 @@ void const_demo() {
 										 /* comment it out to be able to compile */
 
 	/**
-	 * Second example, const pointer to value. We first
-	 * declare a const pointer to an int and then show that
-	 * while we can change the value (via dereferencing)
-	 * we can't change what we point to.
+	 * Second example, const pointer to value. We first declare a const
+	 * pointer to an int and then show that while we can change the
+	 * value (via dereferencing) we can't change what we point to.
 	 */
 	int *const b = &x; /* initial declaration */
 	*b = 1;						 /* changing the value pointed to is fine */
@@ -42,25 +49,24 @@ void const_demo() {
 										 /* comment it out to be able to compile */
 
 	/**
-	 * Third example, const pointer to const value. We first
-	 * declare a const pointer to a const int and then show that
-	 * we can change neither the pointer nor its value (via
-	 * dereferencing)
+	 * Third example, const pointer to const value. We first declare a
+	 * const pointer to a const int and then show that we can change
+	 * neither the pointer nor its value (via dereferencing).
 	 */
 	const int * const c = &x; /* initial declaration */
 	c = &y;										/* changing the pointer is not allowed */
 	*c = 1;										/* change the value is not allowed */
 
 	/**
-	 * Since the variable 'x' was not declared as constant, it
-   * can still be changed in the "normal" way.
+	 * Since the variable 'x' was not declared as constant, it can still
+	 * be changed in the "normal" way.
 	 */
 	x = 1;
 	printf("The value of x is %d\n", x);
 }
 
 /**
- * Demonstrates mutable and immutable strings.
+ * @brief Demonstrates mutable and immutable strings.
  */
 void mutable_string_demo() {
 	char mut_str[] = "hello";	 /* a mutable string */
@@ -71,9 +77,10 @@ void mutable_string_demo() {
 }
 
 /**
- * Demonstration of the keyword 'static'. This function is
- * intended to demonstrate that one can call static functions
- * that are defined in the same file as the function call
+ * @brief Demonstration of the keyword 'static'.
+ *
+ * This function is intended to demonstrate that one can call static
+ * functions that are defined in the same file as the function call
  * takes place.
  */
 static void foo2() {
@@ -85,22 +92,37 @@ int main() {
 	/* Demonstration of the keyword 'const'. */
 	const_demo();
 
-	/* Demonstration of the difference between mutable and
-	 * immutable strings. */
+	/*
+	 * Demonstration of the difference between mutable and immutable
+   * strings.
+	 */
 	mutable_string_demo();
 
-	/* Demonstration of the keyword 'static'. */
-	foo(); /* this is a static function defined elsewhere and so cannot */
-				 /* be called from this file (program). */
+	/*
+	 * Demonstration of the keyword 'static'. This function is static
+	 * and defined elsewhere and so cannot be called from this file
+	 * (program).
+	 */
+	foo();
 
-	bar(); /* a non-static function defined elsewhere can of course be
-					* called if program was compiled properly. */
+	/*
+	 * This function is non-static and defined elsewhere and can of
+   * course be called from here.
+	 */
+	bar();
 
-	foo2(); /* this static function is defined in this same file and
-					 * so can be called here. */
+	/*
+	 * This function is static and is defined here and can therefore be
+	 * called from here.
+	 */
+	foo2();
 
-	bar2(); /* this non-static functions calls a static function. Since
-					 * caller and callee are defined in the same place this is fine. */
+	/*
+	 * This function is non-static and defined elsewhere. It calls a
+	 * static function defined in the same file and so calling this
+	 * function here is OK.
+	 */
+	bar2();
 
 	return 0;
 }

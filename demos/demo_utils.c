@@ -1,3 +1,13 @@
+/**
+ * @file demo_utils.c
+ *
+ * @author Erik Vesterlund
+ *
+ * @brief Demonstrating the keyword 'static'.
+ *
+ * No proper documentation since file is so small.
+ */
+
 #include <stdio.h>
 
 #include "demo_utils.h"
